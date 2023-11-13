@@ -50,3 +50,7 @@ networks:
 
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nombre_del_contenedor, tambien se podria hacer con el comando docker network inspect (nombre de la red del contenedor)
 
+# 6 ¿Cual es la funcionalidad del apartado "ports" en docker compose?
+
+Su funcionalidad es mapear los puertos con los que queremos trabajar.
+
