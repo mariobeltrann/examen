@@ -6,45 +6,47 @@ con los parámetros -it
 
 # 3. ¿Cómo sería un fichero docker-compose para que dos contenedores se comuniquen entre si en una red solo de ellos?
 
-services:
-  asir_bind9:
-    container_name: asir_bind9
-   
-    image: ubuntu/bind9
-   
-    platform: linux/amd64
-    ports:
-      - 53:53
-    
-    volumes:
-      - ./conf:/etc/bind
-      - ./zonas:/var/lib/bind
-  cliente:
-    container_name: cliente
-    image: ubuntu
-    platform: linux/amd64
-    tty: true
-    stdin_open: true
-    
-    dns:
-      - 172.28.5.1
-   
-    
-networks:
-  bind9_subnet:
-    external: true
+services:  
+  asir_bind9:  
+    container_name: asir_bind9  
+     
+    image: ubuntu/bind9  
+     
+    platform: linux/amd64  
+    ports:  
+      - 53:53  
+      
+    volumes:  
+      - ./conf:/etc/bind  
+      - ./zonas:/var/lib/bind  
+  cliente:  
+    container_name: cliente  
+    image: ubuntu  
+    platform: linux/amd64  
+    tty: true  
+    stdin_open: true  
+      
+    dns:  
+      - 172.28.5.1  
+     
+      
+networks:  
+  bind9_subnet:  
+    external: true  
+      
 
 # 4. ¿Qué hay que añadir al fichero anterior para que un contenedor tenga la IP fija?
 
-networks:
-      bind9_subnet:
-        ipv4_address: aqui pondriamos la ip que queremos asignarle
-
-ejemplo:
-
-networks:
-      bind9_subnet:
-        ipv4_address: 172.28.5.1
+networks:  
+      bind9_subnet:  
+        ipv4_address: aqui pondriamos la ip que queremos asignarle  
+  
+ejemplo:  
+  
+networks:  
+      bind9_subnet:  
+        ipv4_address: 172.28.5.1  
+          
 
 # 5. ¿Que comando de consola puedo usar para saber las ips de los contenedores anteriores? Filtra todo lo que puedas la salida.
 
@@ -56,26 +58,26 @@ Su funcionalidad es mapear los puertos con los que queremos trabajar.
 
 # 7 ¿Para que sirve el registro CNAME? Pon un ejemplo
 
-Sirve para establecer una asociación entre un nombre de dominio y otro nombre de dominio, también es comúnmente utilizado para crear alias  de un dominio principal.
-
-ejemplo: 
-
-dominio principal : www.google.com
-
-sbdominio google.com
-
-www.google.com CNAME google.com
+Sirve para establecer una asociación entre un nombre de dominio y otro nombre de dominio, también es comúnmente utilizado para crear alias  de un dominio principal.  
+ 
+ejemplo:   
+  
+dominio principal : www.google.com  
+  
+sbdominio google.com  
+  
+www.google.com CNAME google.com  
 
 # 8 ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre si creo otro contenedor?
 
 Primero tendrias que crear nuevos directorios en el host y con la opcion volumes mapearlos con los del contenedor.
 
 # 9 Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
-# www a la IP 172.16.0.1
-# owncloud sea un CNAME de www
-# un registro de texto con el contenido "1234ASDF"
-# Comprueba que todo funciona con el comando "dig"
-# Muestra en los logs que el servicio arranca correctamente
+### www a la IP 172.16.0.1
+### owncloud sea un CNAME de www
+### un registro de texto con el contenido "1234ASDF"
+### Comprueba que todo funciona con el comando "dig"
+### Muestra en los logs que el servicio arranca correctamente
 
 se crea el archivo tiendadeelectronica y en el se escribe lo siguiente :
 
@@ -98,12 +100,12 @@ owncloud    IN CNAME	www
 txt	    IN TXT	    “1234ASDF”  
 
 
-los dig de comprobacion serian:
-
-dig @ipcontenedor www.tiendadeelectronica.int
-dig CNAME @ipcontenedor owncloud.tiendadeelectronica.int
-dig -t TXT @ipcontenedor txt.tiendadeelectronica.int
-
+los dig de comprobacion serian:  
+  
+dig @ipcontenedor www.tiendadeelectronica.int  
+dig CNAME @ipcontenedor owncloud.tiendadeelectronica.int  
+dig -t TXT @ipcontenedor txt.tiendadeelectronica.int  
+  
 y para mostrar los logs nos tendriamos que ir a la extenion de docker en visual studio code , hariamos click derecho sobre el contenero e iriamos al apartado view logs
 
 
