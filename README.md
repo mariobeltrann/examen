@@ -66,5 +66,9 @@ sbdominio google.com
 
 www.google.com CNAME google.com
 
+# 8 ¿Como puedo hacer para que la configuración de un contenedor DNS no se borre si creo otro contenedor?
+
+Primero tendrias que crear nuevos directorios en el host y con la opcion volumes mapearlos con los del contenedor.
+
 
 
