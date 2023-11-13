@@ -46,3 +46,7 @@ networks:
       bind9_subnet:
         ipv4_address: 172.28.5.1
 
+# 5. ¿Que comando de consola puedo usar para saber las ips de los contenedores anteriores? Filtra todo lo que puedas la salida.
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nombre_del_contenedor, tambien se podria hacer con el comando docker network inspect (nombre de la red del contenedor)
+
