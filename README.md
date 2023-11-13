@@ -33,3 +33,16 @@ services:
 networks:
   bind9_subnet:
     external: true
+
+# 4. ¿Qué hay que añadir al fichero anterior para que un contenedor tenga la IP fija?
+
+networks:
+      bind9_subnet:
+        ipv4_address: aqui pondriamos la ip que queremos asignarle
+
+ejemplo:
+
+networks:
+      bind9_subnet:
+        ipv4_address: 172.28.5.1
+
