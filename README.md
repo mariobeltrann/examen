@@ -70,5 +70,40 @@ www.google.com CNAME google.com
 
 Primero tendrias que crear nuevos directorios en el host y con la opcion volumes mapearlos con los del contenedor.
 
+# 9 Añade una zona tiendadeelectronica.int en tu docker DNS que tenga
+# www a la IP 172.16.0.1
+# owncloud sea un CNAME de www
+# un registro de texto con el contenido "1234ASDF"
+# Comprueba que todo funciona con el comando "dig"
+# Muestra en los logs que el servicio arranca correctamente
+
+se crea el archivo tiendadeelectronica y en el se escribe lo siguiente :
+
+$TTL 38400	; 10 hours 40 minutes
+@		IN SOA	ns.tiendadeelectronica.int. some.email.address. (
+				10000002   ; serial
+				10800      ; refresh (3 hours)
+				3600       ; retry (1 hour)
+				604800     ; expire (1 week)
+				38400      ; minimum (10 hours 40 minutes)
+				)
+@		IN NS	ns.tiendadeelectronica.int.
+ns		IN A		172.28.5.1
+test	IN A		172.28.5.4
+www		IN A		172.28.5.7
+alias	IN CNAME	test
+texto	IN TXT		mensaje
+www	    IN A	    172.16.0.1
+owncloud    IN CNAME	www
+txt	    IN TXT	    “1234ASDF”
+
+
+los dig de comprobacion serian:
+
+dig @ipcontenedor www.tiendadeelectronica.int
+dig CNAME @ipcontenedor owncloud.tiendadeelectronica.int
+dig -t TXT @ipcontenedor txt.tiendadeelectronica.int
+
+y para mostrar los logs nos tendriamos que ir a la extenion de docker en visual studio code , hariamos click derecho sobre el contenero e iriamos al apartado view logs
 
 
