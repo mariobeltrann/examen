@@ -54,3 +54,17 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nom
 
 Su funcionalidad es mapear los puertos con los que queremos trabajar.
 
+# 7 ¿Para que sirve el registro CNAME? Pon un ejemplo
+
+Sirve para establecer una asociación entre un nombre de dominio y otro nombre de dominio, también es comúnmente utilizado para crear alias  de un dominio principal.
+
+ejemplo: 
+
+dominio principal : www.google.com
+
+sbdominio google.com
+
+www.google.com CNAME google.com
+
+
+
