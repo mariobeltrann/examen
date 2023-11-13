@@ -79,23 +79,23 @@ Primero tendrias que crear nuevos directorios en el host y con la opcion volumes
 
 se crea el archivo tiendadeelectronica y en el se escribe lo siguiente :
 
-$TTL 38400	; 10 hours 40 minutes
-@		IN SOA	ns.tiendadeelectronica.int. some.email.address. (
-				10000002   ; serial
-				10800      ; refresh (3 hours)
-				3600       ; retry (1 hour)
-				604800     ; expire (1 week)
-				38400      ; minimum (10 hours 40 minutes)
-				)
-@		IN NS	ns.tiendadeelectronica.int.
-ns		IN A		172.28.5.1
-test	IN A		172.28.5.4
-www		IN A		172.28.5.7
-alias	IN CNAME	test
-texto	IN TXT		mensaje
-www	    IN A	    172.16.0.1
-owncloud    IN CNAME	www
-txt	    IN TXT	    “1234ASDF”
+$TTL 38400	; 10 hours 40 minutes  
+@		IN SOA	ns.tiendadeelectronica.int. some.email.address. (  
+				10000002   ; serial  
+				10800      ; refresh (3 hours)  
+				3600       ; retry (1 hour)  
+				604800     ; expire (1 week)  
+				38400      ; minimum (10 hours 40 minutes)  
+				)  
+@		IN NS	ns.tiendadeelectronica.int.  
+ns		IN A		172.28.5.1  
+test	IN A		172.28.5.4  
+www		IN A		172.28.5.7  
+alias	IN CNAME	test  
+texto	IN TXT		mensaje  
+www	    IN A	    172.16.0.1  
+owncloud    IN CNAME	www  
+txt	    IN TXT	    “1234ASDF”  
 
 
 los dig de comprobacion serian:
